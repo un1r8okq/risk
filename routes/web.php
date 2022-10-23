@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\RiskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +13,5 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [RiskController::class, 'index'])->name('risks.index');
+Route::post('/', [RiskController::class, 'store'])->name('risks.store');;
