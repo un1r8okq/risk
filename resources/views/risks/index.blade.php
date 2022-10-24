@@ -5,21 +5,25 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <form method="POST" action="{{ route('risks.store') }}">
-                        @csrf
-                        <textarea
-                            name="title"
-                            placeholder="{{ __('What\'s the risk?') }}"
-                            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        >{{ old('title') }}</textarea>
-                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                        <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
+    <div class="sm:px-6 lg:px-8 max-w-3xl mx-auto">
+        <div class=" py-12">
+            <form method="POST" action="{{ route('risks.store') }}">
+                @csrf
+                <textarea
+                    name="title"
+                    placeholder="{{ __('Enter a risk...') }}"
+                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                >{{ old('title') }}</textarea>
+                <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                <x-primary-button class="mt-4 float-right">{{ __('Create') }}</x-primary-button>
+        </div>
+        <h2 class="py-2 font-semibold text-2xl text-gray-800 leading-tight">Risks</h2>
+        <div class="bg-white shadow-sm rounded-lg divide-y">
+            @foreach ($risks as $risk)
+                <div class="p-6">
+                    <p class="text-gray-900">{{ $risk->title }}</p>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </x-app-layout>

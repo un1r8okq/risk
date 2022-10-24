@@ -14,7 +14,7 @@ class RiskController extends Controller
      */
     public function index()
     {
-        return view('risks.index');
+        return view('risks.index', ['risks' => Risk::get()]);
     }
 
     /**
